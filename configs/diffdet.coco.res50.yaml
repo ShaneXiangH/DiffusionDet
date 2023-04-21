@@ -9,6 +9,7 @@ MODEL:
     NUM_CLASSES: 80
 DATASETS:
   TRAIN: ("coco_2017_train",)
+  # TRAIN: ("coco_2017_train_0.01",)
   TEST:  ("coco_2017_val",)
 SOLVER:
   STEPS: (350000, 420000)

@@ -53,16 +53,13 @@ Thanks for model conversion scripts of [ResNet-101](https://github.com/PeizeSun/
 and [Swin-Base](https://github.com/facebookresearch/Detic/blob/main/tools/convert-thirdparty-pretrained-model-to-d2.py).
 
 4. Train DiffusionDet
-```
-python train_net.py --num-gpus 8 \
-    --config-file configs/diffdet.coco.res50.yaml
+```bash
+python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml OUTPUT_DIR "./output/Tra_coco_full_coco_res50"
 ```
 
 5. Evaluate DiffusionDet
-```
-python train_net.py --num-gpus 8 \
-    --config-file configs/diffdet.coco.res50.yaml \
-    --eval-only MODEL.WEIGHTS path/to/model.pth
+```bash
+python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml --eval-only MODEL.WEIGHTS model/diffdet_coco_res50.pth MODEL.DiffusionDet.SAMPLE_STEP 4 OUTPUT_DIR "./output/Eva_coco_full_coco_res50"
 ```
 
 * Evaluate with arbitrary number (e.g 300) of boxes by setting `MODEL.DiffusionDet.NUM_PROPOSALS 300`.
@@ -76,15 +73,22 @@ of [DiffusionDet-300boxes](configs/diffdet.coco.res50.300boxes.yaml) that is use
 ### Inference Demo with Pre-trained Models
 We provide a command line tool to run a simple demo following [Detectron2](https://github.com/facebookresearch/detectron2/tree/main/demo#detectron2-demo).
 
+### For jpg image
 ```bash
-python demo.py --config-file configs/diffdet.coco.res50.yaml \
-    --input image.jpg --opts MODEL.WEIGHTS diffdet_coco_res50.pth
+python demo.py --config-file configs/diffdet.coco.res50.yaml --input 1509909525361203.jpg --output output/ --opts MODEL.WEIGHTS model/diffdet_coco_res50.pth
 ```
+
+### For mp4 video
+```bash
+python demo.py --config-file configs/diffdet.coco.res50.yaml --video-input 0fvbpytzBOM_068.mp4 --output output/ --opts MODEL.WEIGHTS model/diffdet_coco_res50.pth
+```
+
+### For my webcam: output not yet supported with it
 
 We need to specify `MODEL.WEIGHTS` to a model from model zoo for evaluation.
 This command will run the inference and show visualizations in an OpenCV window.
 
-For details of the command line arguments, see `demo.py -h` or look at its source code
+For details of the command line arguments, see `python demo.py -h` or look at its source code
 to understand its behavior. Some common arguments are:
 * To run __on your webcam__, replace `--input files` with `--webcam`.
 * To run __on a video__, replace `--input files` with `--video-input video.mp4`.
