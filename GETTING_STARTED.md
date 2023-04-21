@@ -54,7 +54,7 @@ and [Swin-Base](https://github.com/facebookresearch/Detic/blob/main/tools/conver
 
 4. Train DiffusionDet
 ```bash
-python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml OUTPUT_DIR "./output/Tra_coco_full_45000_res50"
+python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml --resume OUTPUT_DIR "./output/Tra_coco_full_45000_res50"
 ```
 
 5. Evaluate DiffusionDet
