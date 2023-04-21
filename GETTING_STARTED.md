@@ -54,12 +54,12 @@ and [Swin-Base](https://github.com/facebookresearch/Detic/blob/main/tools/conver
 
 4. Train DiffusionDet
 ```bash
-python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml OUTPUT_DIR "./output/Tra_coco_full_coco_res50"
+python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml OUTPUT_DIR "./output/Tra_coco_full_45000_res50"
 ```
 
 5. Evaluate DiffusionDet
 ```bash
-python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml --eval-only MODEL.WEIGHTS model/diffdet_coco_res50.pth MODEL.DiffusionDet.SAMPLE_STEP 4 OUTPUT_DIR "./output/Eva_coco_full_coco_res50"
+python train_net.py --num-gpus 1 --config-file configs/diffdet.coco.res50.yaml --eval-only MODEL.WEIGHTS output/Tra_coco_full_4500_res50/model_final.pth MODEL.DiffusionDet.SAMPLE_STEP 4 OUTPUT_DIR "./output/Eva_coco_full_45000_res50"
 ```
 
 * Evaluate with arbitrary number (e.g 300) of boxes by setting `MODEL.DiffusionDet.NUM_PROPOSALS 300`.
